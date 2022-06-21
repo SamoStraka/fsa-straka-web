@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="timetable-img text-center">
+    <img src="img/content/timetable.png" alt="">
+  </div>
+  <div class="table-responsive">
+    <table class="table table-bordered text-center">
+      <thead>
+      <tr class="bg-light-gray">
+        <th class="text-uppercase">Čas
+        </th>
+        <th class="text-uppercase">
+          {{nextDays[0][0]}}
+          <br>
+          {{nextDays[0][1]}}
+        </th>
+        <th class="text-uppercase">
+          {{nextDays[1][0]}}
+          <br>
+          {{nextDays[1][1]}}
+        </th>
+        <th class="text-uppercase">
+          {{nextDays[2][0]}}
+          <br>
+          {{nextDays[2][1]}}
+        </th>
+        <th class="text-uppercase">
+          {{nextDays[3][0]}}
+          <br>
+          {{nextDays[3][1]}}
+        </th>
+        <th class="text-uppercase">
+          {{nextDays[4][0]}}
+          <br>
+          {{nextDays[4][1]}}
+        </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let time of times">
+        <td class="align-middle">{{time + ":00"}}</td>
+        <td class="{{events.includes(time + '-' + nextDays[0][1]) ? 'occupied' : 'free' }}"></td>
+        <td class="{{events.includes(time + '-' + nextDays[1][1]) ? 'occupied' : 'free' }}"></td>
+        <td class="{{events.includes(time + '-' + nextDays[2][1]) ? 'occupied' : 'free' }}"></td>
+        <td class="{{events.includes(time + '-' + nextDays[3][1]) ? 'occupied' : 'free' }}"></td>
+        <td class="{{events.includes(time + '-' + nextDays[4][1]) ? 'occupied' : 'free' }}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

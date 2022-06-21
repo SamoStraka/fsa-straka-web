@@ -1,0 +1,90 @@
+<h1 class="h3">Vytvorenie rezervácie</h1>
+<div class="new-res shadow">
+
+  <form class="row g-3" (submit)="submit(form)" #form=ngForm
+        [class.was-validated]="form.submitted || form.touched">
+    <div class="col-md-4">
+      <div class="col-12">
+        <label for="inputEmail" class="form-label">Email</label>
+        <input type="email" class="form-control" id="inputEmail" name="inputEmail" [(ngModel)]="valueMail" required>
+      </div>
+      <div class="col-12">
+        <label for="inputCourt" class="form-label">Court</label>
+        <select class="form-select" id="inputCourt" name="inputCourt" [(ngModel)]="valueCourt" (ngModelChange)="valChange()" required>
+          <option *ngFor="let court of courts">
+            {{court.id + ". " + court.courtType.name + " kurt #" + court.order}}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-12">
+        <label for="inputDate" class="form-label">Dátum</label>
+        <select class="form-select" id="inputDate" name="inputCourt" [(ngModel)]="valueDate" (ngModelChange)="calcPrice()" required>
+          <option *ngFor="let date of dates">
+            {{date}}
+          </option>
+        </select>
+      </div>
+      <div class="col-12">
+        <label for="startTime" class="form-label">Čas začiatku</label>
+        <select class="form-select" id="startTime" name="inputCourt" [(ngModel)]="valueTime" required>
+          <option *ngFor="let time of times">
+            {{time + ":00"}}
+          </option>
+        </select>
+      </div>
+      <div class="col-12">
+        <label for="timeLength" class="form-label">Dĺžka trvania</label>
+        <select class="form-select" id="timeLength" name="inputCourt" [(ngModel)]="valueLength" (ngModelChange)="calcPrice()" required>
+          <option *ngFor="let length of lengths">
+            {{length + " hod."}}
+          </option>
+        </select>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" name="light" type="checkbox" id="gridCheck" [(ngModel)]="light" (ngModelChange)="calcPrice()">
+        <label class="form-check-label" for="gridCheck" >
+          Bonusové svetlo
+        </label>
+      </div>
+      <hr>
+      <div class="col-12 d-flex price">
+        <div class="col-6">
+          Cena
+        </div>
+        <div class="col-6 ">
+          {{price}} EUR
+        </div>
+      </div>
+
+      <form *ngIf="showDiscount; else success" class="row g-3" name="discountForm" (submit)="submitDiscount(form)" #form=ngForm>
+        <div class="col-auto">
+          <input type="text" class="form-control" name="inputDiscount" id="inputDiscount" [(ngModel)]="valueDiscount" placeholder="PROMO KÓD">
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn mb-3">Uplatniť zľavu</button>
+        </div>
+      </form>
+
+      <ng-template #success>
+        <div class="alert alert-success" role="alert">
+          Zľava bola pridaná
+        </div>
+      </ng-template>
+
+      <div *ngIf="badInput" class="col-12">
+        <p class="alert alert-danger">
+          Nesprávny vstup
+        </p>
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-final">Potvrdiť rezerváciu</button>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <app-timetable [courtId]="val"></app-timetable>
+    </div>
+
+  </form>
+
+</div>

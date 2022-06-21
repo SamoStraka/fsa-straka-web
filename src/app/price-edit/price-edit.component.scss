@@ -1,0 +1,39 @@
+@import "src/vars";
+
+.edit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.edit-price {
+  background-color: $fog-color;
+  border-radius: 1rem;
+  padding: 2rem;
+  margin: 20vh 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-width: 70%;
+  @media (min-width: $md) {
+    min-width: 30%;
+  }
+  label {
+    color: lighten($black-color, 20%);
+    text-align: center;
+    font-size: 1.2rem;
+  }
+
+  button {
+    padding: .5rem 1rem;
+    color: $white-color;
+    background-color: $base-color;
+    border-radius: 0.3rem;
+    font-size: 1.1rem;
+    &:hover {
+      background-color: darken($base-color, 10%);
+      transition: .5s ease;
+    }
+  }
+
+}

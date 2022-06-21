@@ -1,0 +1,52 @@
+<div class="check">
+  <div class="check-form">
+    <form class="row g-3 edit-price shadow-lg" (submit)="submit() ">
+      <label for="floatingInput">Váš e-mail</label>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" name="newPrice" [(ngModel)]="valueMail">
+        <label for="floatingInput">e-mail</label>
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn mb-3 ">Nájsť rezervácie</button>
+      </div>
+    </form>
+  </div>
+  <ol *ngIf="found; else notFound" class="list-group list-group-numbered">
+    <li *ngFor="let reservation of reservations" class="shadow list-group-item d-flex justify-content-between align-items-center">
+      <div class="ms-2 col-10 me-auto">
+        <div class="res-date">
+          <span>dátum:</span>
+          {{reservation.date}}
+        </div>
+        <div class="res-time">
+          <span>čas:</span>
+          {{reservation.timeStart + ":00" + " - " + (reservation.timeStart + reservation.length) + ":00 hod."}}
+        </div>
+        <span>cena:</span>
+        {{reservation.price.toFixed(2) + " €"}}
+        <br>
+        <span>kurt:</span>
+        {{reservation.court.courtType.name + " #" + reservation.court.order}}
+        <br>
+        <span>bonusové svetlo:</span>
+        {{reservation.light? "Áno" : "Nie"}}
+      </div>
+      <div *ngIf="reservation.status == 1; else statusElse" class="col-2 d-flex justify-content-center status-progress">
+        V spracovaní
+      </div>
+      <ng-template #statusElse>
+        <div class="col-2 d-flex justify-content-center status-ok">
+          ok
+        </div>
+      </ng-template>
+    </li>
+  </ol>
+  <ng-template #notFound>
+    <div class="col-12 not-found">
+      <p class="alert alert-danger">
+        Pre zadaný e-mail neexistujú rezervácie
+      </p>
+    </div>
+  </ng-template>
+
+</div>

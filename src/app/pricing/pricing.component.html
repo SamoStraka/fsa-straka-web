@@ -1,0 +1,34 @@
+<div class="container prices">
+  <h2 class="text-center"> Vitajte v cenníku </h2>
+  <p class="text-center">
+    V našom tenisovom centre sa líšia ceny v závislosti od typu kurtu a dňa, v ktorom je možné centrum navštíviť.
+  </p>
+  <div class="row">
+    <div *ngFor="let price of prices" class="col-md-6">
+      <div class="shadow my-card">
+        <div class="card-body">
+          <div class="card-title">
+            <span>typ kurtu:</span>
+            <div>
+              {{price.courtType.name}}
+            </div>
+          </div>
+          <h5 class="card-title">
+            <span>dni:</span>
+            <div>
+              {{price.typeOfDay.name}}
+            </div>
+          </h5>
+          <h3 class="card-text">{{price.price}} €</h3>
+            <span *ngIf="user$ | async as user" class="badge rounded-pill">
+              <a  [routerLink]="[price.id, 'edit']">
+                <i class="fa-solid fa-pen"></i>
+              </a>
+            </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+

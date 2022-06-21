@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-lg navbar-dark mb-4">
+  <div class="container">
+    <a class="navbar-brand" routerLink="">
+      <i class="fa-solid fa-baseball"></i>
+      Tennis Point
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="pricing" >Cenník</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="contact" >Kontakt</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-special" routerLink="reservations/check" >Nájsť rezerváciu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link link-special" routerLink="reservations/new" >Nová rezervácia<i class="fa-solid fa-tennis-ball"></i></a>
+        </li>
+        <li *ngIf="user$ | async as user" class="nav-item">
+          <a class="nav-link" routerLink="reservations/manage" >Spravovať</a>
+        </li>
+      </ul>
+
+      <span *ngIf="user$ | async as user; else logoutTmp">
+        <span class="navbar-text mx-2">{{user.username}}</span>
+        <a class="btn-log" (click)="logout()">Logout</a>
+      </span>
+
+      <ng-template #logoutTmp>
+        <a class="btn-log" routerLink="login">Prihlásenie</a>
+      </ng-template>
+    </div>
+  </div>
+</nav>
+
+<div class="container app-root">
+  <router-outlet></router-outlet>
+
+  <footer class="d-flex flex-wrap justify-content-between container align-items-center py-3 my-4 border-top">
+    <p class="col-md-4 mb-0 text-muted">© 2022 Samuel Straka</p>
+
+    <a routerLink="" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+      <i class="fa-solid fa-baseball">Tennis Point</i>
+    </a>
+
+    <ul class="nav col-md-4 justify-content-end">
+      <li class="ms-3">
+        <a class="text-muted" href="https://www.facebook.com/Tennis-Point-%C5%BDilina-625982647435476/">
+          <i class="fa-brands fa-facebook"></i>
+        </a>
+      </li>
+    </ul>
+  </footer>
+</div>

@@ -1,0 +1,59 @@
+@import "src/vars";
+
+.kontakt {
+  h1 {
+    color: lighten($black-color, 20%);
+    text-align: center;
+  }
+
+  .row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .card-contact {
+    background-color: $fog-color;
+    padding: 1rem;
+    border-radius: .5rem;
+    text-align: center;
+    color: lighten($black-color, 20%);
+    margin-top: 2rem;
+    span {
+      color: lighten($black-color, 50%);
+      font-size: 0.9rem;
+      margin-right: 1rem;
+    }
+    a {
+      text-decoration: none;
+      color: lighten($black-color, 20%);;
+    }
+  }
+
+
+  h2 {
+    color: $base-color;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    padding: 0 ;
+  }
+
+  .mapa {
+    margin-top: 3rem;
+    text-align: center;
+    h3 {
+      color: $base-color;
+      margin-bottom: 2rem;
+    }
+    iframe {
+      @media (min-width: $md) {
+        width: 60%;
+        height: 450px;
+      }
+    }
+
+  }
+}

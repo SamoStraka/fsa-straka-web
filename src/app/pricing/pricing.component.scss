@@ -1,0 +1,55 @@
+@import "src/vars";
+
+.prices {
+  h2 {
+    color: $black-color;
+    font-size: 2.5rem;
+  }
+  p {
+    color: lighten($black-color, 20%);
+    font-size: 1.2rem;
+  }
+  .my-card {
+    margin: 2rem 0;
+    border-radius: 0.5rem;
+    background-color: $fog-color;
+  }
+
+  .card-title {
+    color: $black-color;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: flex-start;
+    span {
+      color: lighten($black-color, 70%);
+      font-size: 0.9rem;
+      margin-right: 1rem;
+    }
+    :not(span) {
+      color: lighten($base-color, 5%);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+  }
+
+  h3 {
+    color: $base-color;
+    font-weight: 600;
+    font-size: 5rem;
+    text-align: right;
+  }
+  .badge {
+    font-size: 1.2rem;
+    a {
+      color: $black-color;
+      :hover {
+        color: $base-color;
+        transition: .5s ease;
+      }
+    }
+  }
+
+
+}
+

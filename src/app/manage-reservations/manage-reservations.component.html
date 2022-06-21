@@ -1,0 +1,50 @@
+<div class="manage">
+  <h1 class="h3">Správa Rezervácií</h1>
+
+  <ol class="list-group list-group-numbered">
+    <li *ngFor="let reservation of reservations" class="shadow list-group-item d-flex justify-content-between align-items-center">
+      <div class="ms-2 col-10 me-auto">
+        <div class="res-date">
+          <span>dátum:</span>
+          {{reservation.date}}
+        </div>
+        <div class="res-time">
+          <span>čas:</span>
+          {{reservation.timeStart + ":00" + " - " + (reservation.timeStart + reservation.length) + ":00 hod."}}
+        </div>
+        <span>e-mail:</span>
+        {{reservation.mail}}
+        <br>
+        <span>kurt:</span>
+        {{reservation.court.courtType.name + " #" + reservation.court.order}}
+        <br>
+        <span>bonusové svetlo:</span>
+        {{reservation.light? "Áno" : "Nie"}}
+        <br>
+        <span>cena:</span>
+        {{reservation.price.toFixed(2) + " €"}}
+      </div>
+      <div *ngIf="reservation.status == 1; else confirmedTmp" class="col-2 signs">
+      <span class="decline" (click)="declineReservation(reservation.id)">
+        <a href="mailto:{{reservation.mail}}">
+          <i class="fa-solid fa-x"></i>
+        </a>
+      </span>
+        <span class="confirm" (click)="confirmReservation(reservation.id)">
+         <a href="mailto:{{reservation.mail}}">
+          <i class="fa-solid fa-check"></i>
+        </a>
+      </span>
+      </div>
+      <ng-template #confirmedTmp>
+        <div class="col-2 confirmed d-flex justify-content-center">
+          ok
+        </div>
+      </ng-template>
+    </li>
+  </ol>
+
+  <div class="d-flex justify-content-center">
+    <button type="button" class="btn btn-danger" (click)="deleteOldReservations()">Odstrániť staré rezervácie</button>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+@import "src/vars";
+
+.login {
+  margin: 20vh 0;
+  background-color: $fog-color;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  width: 90%;
+  @media (min-width: $md) {
+    width: 50%;
+  }
+
+  .form-floating {
+    margin-bottom: 1rem;
+  }
+
+  .btn {
+    background-color: $base-color;
+    color: $white-color;
+    &:hover {
+      background-color: darken($base-color, 10%);
+      font-weight: 600;
+    }
+  }
+
+}
